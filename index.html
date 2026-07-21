@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>阿普瑞风 · 活动征稿 brief V1.0</title>
+<style>
+  :root{
+    /* 蓝色底图主色（同设计稿） */
+    --apres-blue:      #386798;
+    --apres-blue-deep: #244C7A;
+    --apres-blue-soft: #E4EDF5;
+    --apres-blue-dark: #1B3A63;
+    /* 剪贴板牛皮纸 */
+    --clip-kraft:      #C99E68;
+    --clip-kraft-deep: #A47845;
+    /* 强调色 */
+    --apres-yellow:    #F5D63A;
+    --apres-yellow-deep:#DBB81F;
+    --xhs-red:         #FF2E4C;
+    --ink:             #1A1A1A;
+    --paper:           #FEFDF6;
+    --grey-deep:       #7F8388;
+    --grey-light:      #EEF1F0;
+
+    /* 卡片6 tab 色板（5种） */
+    --c6-usa:    #E85D4A;   --c6-usa-soft:    #FDEEEA;
+    --c6-kor:    #E88BAE;   --c6-kor-soft:    #FCEDF3;
+    --c6-vt:     #C4A78A;   --c6-vt-soft:     #F5EBDD;
+    /* 卡片7 tab 色板（4种） */
+    --c7-ts:     #4E7CC7;   --c7-ts-soft:     #E8EEF7;
+    --c7-tc:     #B54A5A;   --c7-tc-soft:     #F5E4E6;
+    --c7-bs:     #4A9E7D;   --c7-bs-soft:     #E4F3EC;
+    --c7-bc:     #8B6F47;   --c7-bc-soft:     #F1E7D8;
+    /* 卡片8 tab 色板 */
+    --c8-women:  #E85D8B;   --c8-women-soft:  #FCE4EE;
+    --c8-men:    #2E5FA3;   --c8-men-soft:    #E1EAF5;
+    --c8-scene:  #E89A1E;   --c8-scene-soft:  #FBEED7;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    color:var(--ink);
+    line-height:1.6;
+    font-size:14px;
+    background: var(--apres-blue);
+    position:relative;
+  }
+  /* 蓝色底图：单色 #386798 主调 + 轻微层叠光晕（保证色号不偏移） */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    z-index:-2;
+    pointer-events:none;
+    background:
+      /* 顶部微光 */
+      radial-gradient(ellipse 1200px 700px at 50% -180px, rgba(255,255,255,0.08), transparent 62%),
+      /* 右上微深 */
+      radial-gradient(circle 780px at 94% 12%, rgba(0,0,0,0.14), transparent 62%),
+      /* 主色 */
+      var(--apres-blue);
+  }
+  /* 颗粒 + 毛玻璃层：三层颗粒 + 方向线文，screen 混合模式让颗粒“跃”出来 */
+  body::after{
+    content:"";
+    position:fixed; inset:0;
+    z-index:-1;
+    pointer-events:none;
+    opacity:1;
+    background-image:
+      /* 层 1：磨砂颗粒（小而密） */
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.8' numOctaves='2' stitchTiles='stitch' seed='7'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"),
+      /* 层 2：纤维颗粒（中颞色） */
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch' seed='3'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.22 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"),
+      /* 层 3：粗纸纹（大块纹理） */
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='780' height='780' viewBox='0 0 780 780'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.35' numOctaves='3' stitchTiles='stitch' seed='11'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.14 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"),
+      /* 层 4：横向纸纹细线（模拟蓝色杜邀手工纸） */
+      repeating-linear-gradient(180deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 4px),
+      /* 层 5：斜向很淡的网纹（皮革质感） */
+      repeating-linear-gradient(45deg, rgba(0,0,0,0.02) 0 2px, transparent 2px 8px);
+    background-size: 260px 260px, 420px 420px, 780px 780px, auto, auto;
+    mix-blend-mode: soft-light;
+  }
+
+  .page{max-width:1080px;margin:0 auto;padding:24px 20px 60px;position:relative}
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;
+    /* 入口横向展示：保持原图 2.34:1 比例、不裁切 */
+    aspect-ratio: 2.34 / 1;
+    border-radius:22px;
+    overflow:hidden;
+    margin-bottom:24px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.28);
+    background:#386798;
+  }
+  .hero img{
+    width:100%; height:100%;
+    object-fit:contain;
+    display:block;
+  }
+  .hero::after{
+    content:""; position:absolute; inset:0;
+    background: linear-gradient(180deg, transparent 55%, rgba(31,42,64,0.55) 100%);
+    pointer-events:none;
+  }
+  .hero-badge{
+    position:absolute; left:20px; top:20px; z-index:2;
+    background:var(--xhs-red); color:#fff;
+    padding:6px 14px; border-radius:999px;
+    font-size:12px; font-weight:800; letter-spacing:1px;
+    box-shadow:0 4px 14px rgba(255,46,76,0.45);
+  }
+  .hero-tags{
+    position:absolute; left:20px; bottom:18px; z-index:2;
+    display:flex; flex-wrap:wrap; gap:8px;
+  }
+  .hero-tags a{
+    text-decoration:none;
+    background:rgba(255,255,255,0.92);
+    color:var(--apres-blue-deep);
+    padding:6px 12px; border-radius:999px;
+    font-size:12px; font-weight:700;
+    backdrop-filter: blur(4px);
+    transition:transform .15s;
+  }
+  .hero-tags a:hover{transform:translateY(-2px)}
+
+  /* ============ 官宣笔记 高亮卡 ============ */
+  .official-wrap{position:relative;margin-bottom:22px}
+  .official-wrap::before{
+    content:""; position:absolute; inset:-6px;
+    background: linear-gradient(135deg, var(--apres-yellow) 0%, #FFB43A 100%);
+    border-radius:22px; opacity:.5; filter:blur(14px); z-index:0;
+    animation: halo 2.4s ease-in-out infinite;
+  }
+  @keyframes halo{ 0%,100%{opacity:.32} 50%{opacity:.62} }
+  .official{
+    position:relative; z-index:1;
+    display:flex; align-items:center; gap:14px;
+    background: linear-gradient(135deg, #FFFEF6 0%, #FFF4C6 100%);
+    border:2px solid var(--apres-yellow-deep);
+    border-radius:16px;
+    padding:14px 18px;
+    text-decoration:none; color:var(--ink);
+    box-shadow: 0 6px 20px rgba(245,214,58,0.35);
+    overflow:hidden;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .official:hover{transform:translateY(-2px); box-shadow:0 12px 28px rgba(245,214,58,.5)}
+  .official::after{
+    content:"OFFICIAL"; position:absolute;
+    top:10px; right:-32px;
+    background: var(--ink); color:#fff;
+    font-size:10px; font-weight:800; letter-spacing:1.2px;
+    padding:3px 40px; transform:rotate(35deg);
+    box-shadow: 0 2px 6px rgba(0,0,0,.25);
+  }
+  .official-cover{
+    width:74px; height:74px; border-radius:12px; overflow:hidden;
+    flex-shrink:0; background:var(--grey-light);
+    border:2px solid #fff; box-shadow:0 3px 10px rgba(0,0,0,.15);
+  }
+  .official-cover img{width:100%;height:100%;object-fit:cover;display:block}
+  .official-body{flex:1;min-width:0;padding-right:60px}
+  .official-tag{
+    font-size:11px; color:#fff; background:var(--ink);
+    display:inline-flex; align-items:center; gap:4px;
+    padding:3px 10px; border-radius:999px;
+    margin-bottom:6px; font-weight:700; letter-spacing:.5px;
+  }
+  .official-title{
+    font-size:15px; font-weight:700;
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  }
+  .official-cta{font-size:12px; color:var(--apres-yellow-deep); margin-top:4px; font-weight:700}
+
+  /* ============ 通用 Section ============ */
+  .section{
+    background:#fff;
+    border-radius:20px;
+    padding:26px 26px;
+    margin-top:20px;
+    box-shadow:0 6px 22px rgba(0,0,0,0.14);
+  }
+  .section-head{display:flex; align-items:center; gap:12px; margin-bottom:18px}
+  .section-num{
+    width:32px; height:32px;
+    background: var(--apres-blue-deep); color:var(--apres-yellow);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:14px; font-weight:800;
+  }
+  .section-title{margin:0; font-size:20px; font-weight:800; color:var(--ink)}
+  .section-sub{
+    color:var(--grey-deep); font-size:13px; margin:-8px 0 16px 44px;
+  }
+
+  h3.subhead{
+    font-size:15px; color:var(--ink); margin:22px 0 12px; font-weight:800;
+    display:flex; align-items:center; gap:8px;
+  }
+  h3.subhead:first-of-type{margin-top:0}
+  h3.subhead::before{
+    content:""; width:4px; height:16px; background:var(--apres-yellow);
+    border-radius:2px;
+  }
+
+  .rules-list{list-style:none; padding:0; margin:0}
+  .rules-list li{
+    padding:12px 16px; background:var(--grey-light);
+    border-radius:12px; margin-bottom:10px;
+  }
+  .rules-list li:last-child{margin-bottom:0}
+  .rules-list .k{color:var(--ink); font-weight:800; margin-right:6px}
+  .rules-list .hot{color:var(--xhs-red); font-weight:800}
+  .rules-list .tag-inline{
+    display:inline-block;
+    background:var(--apres-yellow); color:var(--ink);
+    padding:1px 8px; border-radius:6px; font-weight:700;
+    font-size:12.5px; margin:0 2px;
+  }
+
+  /* 醒目黄条 (趋势爆) */
+  .hot-banner{
+    background: linear-gradient(135deg, #FFF9DC 0%, var(--apres-yellow) 100%);
+    border:2px dashed var(--apres-yellow-deep);
+    border-radius:14px;
+    padding:16px 20px;
+    display:flex; align-items:center; gap:12px;
+    margin-top:16px;
+  }
+  .hot-banner .siren{font-size:22px}
+  .hot-banner .txt{font-weight:800; color:var(--apres-blue-deep); font-size:14.5px; line-height:1.55}
+  .hot-banner .txt em{font-style:normal; color:var(--xhs-red)}
+
+  /* 收集表按钮 */
+  .cta-link{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--apres-blue-deep); color:#fff;
+    padding:10px 18px; border-radius:999px;
+    text-decoration:none; font-weight:800; font-size:13px;
+    transition: transform .15s, box-shadow .15s;
+    box-shadow: 0 4px 14px rgba(31,42,64,.28);
+  }
+  .cta-link:hover{transform:translateY(-2px); box-shadow:0 10px 22px rgba(31,42,64,.42)}
+  .cta-link::after{content:"→"; font-size:15px}
+
+  .callout{
+    background: var(--apres-blue-soft);
+    border-left: 4px solid var(--apres-blue-deep);
+    padding:12px 14px; border-radius:8px;
+    margin:12px 0; font-size:13px; color:var(--apres-blue-deep);
+    font-weight:600;
+  }
+  .callout em{font-style:normal; color:var(--xhs-red); font-weight:800}
+
+  /* 图文步骤 grid */
+  .step-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:14px;
+    margin-top:14px;
+  }
+  .step-card{
+    background: var(--apres-blue-soft);
+    border-radius:14px;
+    padding:12px;
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .step-num{
+    width:22px; height:22px; border-radius:50%;
+    background:var(--apres-blue-deep); color:#fff;
+    font-size:12px; font-weight:800;
+    display:flex; align-items:center; justify-content:center;
+  }
+  /* 图文发布三步骤：保留手机截图原比例，不裁 9:16 */
+  .step-shot{
+    background:#111; border-radius:10px; overflow:hidden;
+    position:relative;
+  }
+  .step-shot img{
+    width:100%; height:auto; display:block;
+  }
+  .step-title{font-weight:800; font-size:13px}
+  .step-desc{font-size:12.5px; color:#444; line-height:1.55}
+
+  /* ============ Tab 交互（复用参考页模式） ============ */
+  .pick{
+    border-radius:18px;
+    padding:22px 22px 20px;
+    margin-bottom:20px;
+    position:relative; overflow:hidden;
+    transition: background .35s ease;
+  }
+  .pick[data-active="usa"]  { background: linear-gradient(135deg, var(--c6-usa-soft) 0%, var(--c6-usa) 100%); }
+  .pick[data-active="kor"]  { background: linear-gradient(135deg, var(--c6-kor-soft) 0%, var(--c6-kor) 100%); }
+  .pick[data-active="vt"]   { background: linear-gradient(135deg, var(--c6-vt-soft) 0%, var(--c6-vt) 100%); }
+  .pick[data-active="ts"]   { background: linear-gradient(135deg, var(--c7-ts-soft) 0%, var(--c7-ts) 100%); }
+  .pick[data-active="tc"]   { background: linear-gradient(135deg, var(--c7-tc-soft) 0%, var(--c7-tc) 100%); }
+  .pick[data-active="bs"]   { background: linear-gradient(135deg, var(--c7-bs-soft) 0%, var(--c7-bs) 100%); }
+  .pick[data-active="bc"]   { background: linear-gradient(135deg, var(--c7-bc-soft) 0%, var(--c7-bc) 100%); }
+  .pick[data-active="women"]{ background: linear-gradient(135deg, var(--c8-women-soft) 0%, var(--c8-women) 100%); }
+  .pick[data-active="men"]  { background: linear-gradient(135deg, var(--c8-men-soft) 0%, var(--c8-men) 100%); }
+  .pick[data-active="scene"]{ background: linear-gradient(135deg, var(--c8-scene-soft) 0%, var(--c8-scene) 100%); }
+
+  .pick::before{
+    content:"★"; position:absolute; top:12px; right:18px;
+    font-size:60px; color:rgba(26,26,26,0.08); line-height:1;
+  }
+  .pick-title{
+    font-size:19px; font-weight:900; margin:0 0 8px; color:var(--ink);
+    letter-spacing:.4px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .pick-title .emoji{margin-right:0; font-size:24px}
+  .pick-sub{
+    margin:0 0 16px;
+    color:rgba(0,0,0,0.72);
+    font-size:14px;
+    display:inline-flex; align-items:center; gap:8px;
+    font-weight:700;
+  }
+  .pick-sub .switch-pill{
+    display:inline-flex; align-items:center; gap:6px;
+    background: rgba(0,0,0,0.82);
+    color:#fff;
+    padding:4px 12px 4px 10px;
+    border-radius:999px;
+    font-size:12.5px; font-weight:800;
+    letter-spacing:.4px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    animation: switchPulse 1.6s ease-in-out infinite;
+  }
+  .pick-sub .switch-pill::before{ content:"👇"; font-size:14px }
+  @keyframes switchPulse{
+    0%,100% { transform: translateY(0); box-shadow: 0 3px 10px rgba(0,0,0,0.2); }
+    50%     { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(0,0,0,0.3); }
+  }
+  .tabs{
+    display:flex; gap:8px;
+    background:rgba(255,255,255,0.58);
+    border-radius:14px;
+    padding:8px;
+    flex-wrap:wrap;
+  }
+  .tab{
+    flex:1 1 100px; min-width:90px;
+    padding:12px 8px;
+    border-radius:10px; border:none; background:transparent;
+    cursor:pointer;
+    font-size:13.5px; font-weight:700; color:var(--grey-deep);
+    transition: all .2s;
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+    font-family:inherit;
+  }
+  .tab .tab-emoji{font-size:20px}
+  .tab .tab-hash{font-size:11px; font-weight:500; color:var(--grey-deep)}
+  .tab:hover{background:rgba(255,255,255,0.85)}
+  .tab.active{color:#fff; box-shadow:0 3px 10px rgba(0,0,0,0.15)}
+  .tab.active[data-key="usa"]{background:var(--c6-usa)}
+  .tab.active[data-key="kor"]{background:var(--c6-kor)}
+  .tab.active[data-key="vt"]{background:var(--c6-vt); color:#4a3a1f}
+  .tab.active[data-key="ts"]{background:var(--c7-ts)}
+  .tab.active[data-key="tc"]{background:var(--c7-tc)}
+  .tab.active[data-key="bs"]{background:var(--c7-bs)}
+  .tab.active[data-key="bc"]{background:var(--c7-bc)}
+  .tab.active[data-key="women"]{background:var(--c8-women)}
+  .tab.active[data-key="men"]{background:var(--c8-men)}
+  .tab.active[data-key="scene"]{background:var(--c8-scene)}
+  .tab.active .tab-hash{color:rgba(255,255,255,.85)}
+  .tab.active[data-key="vt"] .tab-hash{color:rgba(74,58,31,.7)}
+
+  .panel{display:none; animation:fade .3s ease}
+  .panel.active{display:block}
+  @keyframes fade{ from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none} }
+
+  /* Panel 内容 */
+  .panel-hero{
+    display:flex; align-items:flex-start; gap:16px;
+    padding:20px; border-radius:16px;
+    margin-bottom:18px;
+    background:rgba(255,255,255,0.7);
+  }
+  .panel-hero .emoji{font-size:28px}
+  .panel-hero h4{margin:0 0 6px; font-size:16px; font-weight:800; color:var(--ink)}
+  .panel-hero p{margin:0; font-size:13px; color:#333; line-height:1.7}
+
+  /* 9:16 图卡网格（灵感&公式&场景） */
+  .look-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:14px;
+  }
+  .look-grid.cols-2{grid-template-columns: repeat(2, 1fr)}
+  .look-grid.cols-4{grid-template-columns: repeat(4, 1fr)}
+  .look{
+    background:#fff; border-radius:14px; overflow:hidden;
+    display:flex; flex-direction:column;
+    box-shadow:0 3px 10px rgba(0,0,0,0.08);
+  }
+  .look-cover{
+    aspect-ratio: 9/16;
+    background:#eee;
+    position:relative; overflow:hidden;
+  }
+  .look-cover img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    transition: transform .35s ease;
+  }
+  .look:hover .look-cover img{transform:scale(1.03)}
+  .look-cover .badge{
+    position:absolute; left:10px; top:10px;
+    background:rgba(0,0,0,0.72); color:#fff;
+    font-size:11px; font-weight:700; padding:3px 8px; border-radius:6px;
+    letter-spacing:.4px;
+  }
+  .look-body{padding:12px 14px}
+  .look-name{
+    font-size:13.5px; font-weight:800; color:var(--ink);
+    display:flex; align-items:center; gap:6px;
+  }
+  .look-name .check{color:var(--xhs-red)}
+  .look-desc{margin-top:6px; font-size:12.5px; color:#555; line-height:1.55}
+  .look-desc .top{color:var(--apres-blue-deep); font-weight:700}
+  .look-desc .bot{color:var(--xhs-red); font-weight:700}
+  .look-desc .tip{color:#666; font-size:12px; margin-top:6px; display:block; padding-top:6px; border-top:1px dashed #eee}
+
+  /* 卡片7 单品图 网格（每 tab 展示 3 图） */
+  .item-grid{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    gap:14px;
+  }
+  .item-card{
+    background:#fff; border-radius:14px; overflow:hidden;
+    display:flex; flex-direction:column;
+    box-shadow:0 3px 10px rgba(0,0,0,0.08);
+    position:relative;
+  }
+  .item-cover{
+    aspect-ratio: 9/16;
+    overflow:hidden; background:#eee;
+    position:relative;
+  }
+  .item-cover img{width:100%;height:100%;object-fit:cover;display:block}
+  .item-card .must{
+    position:absolute; top:10px; right:10px;
+    background:var(--xhs-red); color:#fff;
+    font-size:11px; font-weight:800; padding:3px 8px; border-radius:6px;
+    box-shadow:0 3px 8px rgba(255,46,76,.4);
+    z-index:2;
+  }
+  .item-body{padding:10px 12px}
+  .item-name{font-size:13.5px; font-weight:800}
+
+  /* 美式阿普瑞：两图只占一半宽度居中，图片相对容器自然缩小 50% */
+  .look-grid--half{
+    max-width: 55%;
+    margin: 0 auto;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 720px){
+    .look-grid--half{ max-width: 90%; }
+  }
+
+  /* footer */
+  .footer{
+    text-align:center; color:rgba(255,255,255,0.5);
+    padding:36px 20px 10px; font-size:12px; letter-spacing:.5px;
+  }
+
+  @media (max-width: 720px){
+    .step-grid{grid-template-columns:1fr}
+    .look-grid,.look-grid.cols-2,.look-grid.cols-4{grid-template-columns:repeat(2,1fr)}
+    .item-grid{grid-template-columns:repeat(2,1fr)}
+    .official-body{padding-right:56px}
+    .section{padding:22px 18px}
+    .page{padding:16px 14px 40px}
+    .tab{min-width:64px; font-size:12.5px; padding:10px 6px}
+    .tab .tab-emoji{font-size:18px}
+    .hero{aspect-ratio: 2.34 / 1}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ============ HERO ============ -->
+  <div class="hero">
+    <img src="assets/hero-banner.jpg" alt="阿普瑞风 SPORTYCHIC 一半运动 一半时髦" />
+    <div class="hero-tags">
+      <a href="https://www.xiaohongshu.com/search_result?keyword=%E9%98%BF%E6%99%AE%E7%91%9E%E9%A3%8E" target="_blank" rel="noopener">#阿普瑞风</a>
+      <a href="https://www.xiaohongshu.com/search_result?keyword=sportychic" target="_blank" rel="noopener">#sportychic</a>
+    </div>
+  </div>
+
+  <!-- ============ 卡片1 官宣笔记 ============ -->
+  <div class="official-wrap">
+    <a class="official" href="https://www.xiaohongshu.com/explore/6a55df64000000001c02673b?xsec_token=ABZX6NE4XuBJ8mhMNMbxRmQVUOb4-xFenewrb-LbqO1Pc=&xsec_source=pc_search" target="_blank" rel="noopener">
+      <div class="official-cover"><img src="assets/hero-note.jpg" alt="官宣笔记封面"/></div>
+      <div class="official-body">
+        <span class="official-tag">📌 官宣笔记</span>
+        <div class="official-title">阿普瑞风｜一半运动 · 一半时髦 SPORTYCHIC</div>
+        <div class="official-cta">点击查看完整活动 →</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- ============ 趋势爆 · 独立高亮块（无编号） ============ -->
+  <div class="hot-banner">
+    <div class="siren">🚨</div>
+    <div class="txt">
+      <strong>趋势爆！站内「阿普瑞风」用户搜索激增！</strong>
+      急需各位博主<em>优质内容供给补充</em>
+    </div>
+  </div>
+
+  <!-- ============ 卡片1 活动规则（原排版） ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">1</div>
+      <h2 class="section-title">活动规则 · 一次讲清</h2>
+    </div>
+
+    <h3 class="subhead">📮 返稿投流链接（务必填写）</h3>
+    <p style="margin:0 0 12px; color:#333; font-size:13.5px">
+      薯薯会定期回扫，持续投流。
+    </p>
+    <a class="cta-link" href="https://doc.weixin.qq.com/forms/ANAAyQcbAAgAUwAIAa5ANoCNqVZYVZenf" target="_blank" rel="noopener">前往填写收集表</a>
+
+    <h3 class="subhead" style="margin-top:22px">⏰ 活动时间</h3>
+    <ul class="rules-list">
+      <li><span class="k">时间：</span>即日起 — 2026 年 8 月 30 日</li>
+    </ul>
+
+    <h3 class="subhead">🎁 流量扶持</h3>
+    <ul class="rules-list">
+      <li>带指定话题 <span class="tag-inline">#阿普瑞风</span> <span class="tag-inline">#sportychic</span> 发布笔记，<span class="hot">瓜分时尚薯上亿流量池</span>！</li>
+    </ul>
+
+    <h3 class="subhead">📝 发布要求</h3>
+    <ul class="rules-list">
+      <li><span class="k">标题格式：</span>阿普瑞风｜xxxxx</li>
+      <li><span class="k">文案方向：</span>拆解阿普瑞穿搭风格，用上公式「一半运动 + 一半时髦」：上身 xxx，下身 xxx</li>
+      <li><span class="k">内容形式：</span>图文 / 视频均可</li>
+      <li><span class="k">必带话题：</span><span class="tag-inline">#阿普瑞风</span> <span class="tag-inline">#sportychic</span></li>
+    </ul>
+
+    <div class="callout">💡 敲黑板：<em>发布视频笔记可额外获得 20w 专属流量倾斜！</em></div>
+  </div>
+
+  <!-- ============ 卡片2 风格解读（原排版） ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">2</div>
+      <h2 class="section-title">什么是「阿普瑞风」</h2>
+    </div>
+
+    <h3 class="subhead">1. 风格溯源 · 从 Après-ski 到日常</h3>
+    <p style="margin:0 0 8px; color:#333; font-size:13.5px; line-height:1.75">
+      「阿普瑞」源自法语 <b>Après</b>（意为「之后」）。起源可追溯到上世纪 50 年代阿尔卑斯山区的 <b>Après-ski（滑雪后）</b> 文化——一天滑雪结束后，人们不会立刻换下运动装备，而是穿着仍带有运动余温的装扮，直接步入雪后的社交聚会。
+    </p>
+    <p style="margin:0; color:#333; font-size:13.5px; line-height:1.75">
+      当下的阿普瑞风已经从生活状态演变成一种<b>穿搭方式</b>：运动感与时髦巧思共存，一身穿搭应对一整天的各个场合，打破运动场景与时髦场景的边界——「爱运动的样子」，是一种审美选择。
+    </p>
+
+    <h3 class="subhead">2. 阿普瑞风 · 三条黄金公式</h3>
+    <ul class="rules-list">
+      <li><span class="k">风格混搭：</span>1 件运动单品 + 1 件时髦单品——一半运动，一半时装/正装</li>
+      <li><span class="k">场景打破：</span>不严格区分运动、约会、通勤、社交，单套穿搭应对多个场景</li>
+      <li><span class="k">单品灵感：</span>上身运动 → 下身时髦；上身时髦 → 下身运动（保持对称）</li>
+    </ul>
+  </div>
+
+  <!-- ============ 卡片5 图文发布方式 ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">3</div>
+      <h2 class="section-title">图文推荐发布方式</h2>
+    </div>
+    <p class="section-sub" style="margin-top:-6px">🎬 尽量做视频；如发图文，推荐用小红书「标记」组件，可获得更多流量 boost</p>
+
+    <div class="step-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-shot"><img src="assets/c5-p1.jpg" alt="步骤1 导入图片"/></div>
+        <div class="step-title">导入图片</div>
+        <div class="step-desc">点击小红书底部「+」→ 选择图片 → 点击「下一步」进入编辑页</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-shot"><img src="assets/c5-p2.jpg" alt="步骤2 调出标签并输入"/></div>
+        <div class="step-title">调出「标签」输入文字</div>
+        <div class="step-desc">底部工具栏点击「标签」，输入穿搭公式👉<br/>一半时髦：xx 单品 / 一半运动：xx 单品</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-shot"><img src="assets/c5-p3.jpg" alt="步骤3 带话题发布"/></div>
+        <div class="step-title">带话题发布</div>
+        <div class="step-desc">编辑完标签后，带上 <b>#sportychic</b> <b>#阿普瑞风</b> 发布即可</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 卡片6 阿普瑞穿搭灵感（Tab 切换） ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">4</div>
+      <h2 class="section-title">阿普瑞穿搭灵感有哪些？</h2>
+    </div>
+
+    <div class="pick" id="pick-6" data-active="usa">
+      <h3 class="pick-title"><span class="emoji">🌐</span>选风格 · 三大流派任你演绎</h3>
+      <p class="pick-sub"><span class="switch-pill">点击切换</span>美式 / 韩系 / 复古，看看你的阿普瑞是哪一挂</p>
+      <div class="tabs" data-group="6">
+        <button class="tab active" data-key="usa" data-group="6">
+          <span class="tab-emoji">🗽</span><span>美式阿普瑞</span>
+        </button>
+        <button class="tab" data-key="kor" data-group="6">
+          <span class="tab-emoji">🎀</span><span>韩系阿普瑞</span>
+        </button>
+        <button class="tab" data-key="vt" data-group="6">
+          <span class="tab-emoji">📻</span><span>复古阿普瑞</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 美式 -->
+    <div class="panel active" data-group="6" data-key="usa">
+      <div class="panel-hero">
+        <div class="emoji">🗽</div>
+        <div>
+          <h4>美式阿普瑞 · 白女感 × 美高感</h4>
+          <p>大 T + 长袜 + 板鞋，或运动 bra + 低腰宽松牛仔，随性带点漫不经心的性感。</p>
+        </div>
+      </div>
+      <div class="look-grid cols-2 look-grid--half">
+        <div class="look">
+          <div class="look-cover"><span class="badge">白女运动感</span><img src="assets/c6-us-baegirl.jpg" alt="白女运动感"/></div>
+          <div class="look-body">
+            <div class="look-name">白女运动感</div>
+            <div class="look-desc">
+              <b>Look A</b> · <span class="top">上身运动</span>：基础款运动背心 · <span class="bot">下身时髦</span>：低腰宽松牛仔裤 ➕ 人字拖<br/>
+              <b>Look B</b> · <span class="top">上身时髦</span>：oversize 速干尼龙短袖 · <span class="bot">下身运动</span>：Legging 短裤 ➕ 长筒白袜 ➕ 运动鞋
+            </div>
+          </div>
+        </div>
+        <div class="look">
+          <div class="look-cover"><span class="badge">美高运动感</span><img src="assets/c6-us-highschool.jpg" alt="美高运动感"/></div>
+          <div class="look-body">
+            <div class="look-name">美高运动感</div>
+            <div class="look-desc">
+              <span class="top">上身时髦</span>：美式字母印花吊带<br/>
+              <span class="bot">下身运动</span>：宽松校园运动长裤 ➕ 运动鞋
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 韩系 -->
+    <div class="panel" data-group="6" data-key="kor">
+      <div class="panel-hero">
+        <div class="emoji">🎀</div>
+        <div>
+          <h4>韩系阿普瑞 · 少女 × 松弛 × 运动辣</h4>
+          <p>蕾丝、罩衫、堆堆袜——把运动装备兑一勺甜和一勺辣。</p>
+        </div>
+      </div>
+      <div class="look-grid">
+        <div class="look">
+          <div class="look-cover"><span class="badge">少女运动感</span><img src="assets/c6-kr-girl.jpg" alt="少女运动感"/></div>
+          <div class="look-body">
+            <div class="look-name">少女运动感</div>
+            <div class="look-desc">
+              <span class="top">上身时髦</span>：蕾丝花边短袖<br/>
+              <span class="bot">下身运动</span>：复古运动短裤 + 平底运动鞋 + 蕾丝长袜
+            </div>
+          </div>
+        </div>
+        <div class="look">
+          <div class="look-cover"><span class="badge">松弛运动感</span><img src="assets/c6-kr-chill.jpg" alt="松弛运动感"/></div>
+          <div class="look-body">
+            <div class="look-name">松弛运动感</div>
+            <div class="look-desc">
+              <span class="top">上身时髦</span>：轻薄蕾丝吊带 / 轻薄罩衫<br/>
+              <span class="bot">下身运动</span>：7 分运动阔腿裤 + 坡跟人字拖 + 半掌堆堆袜
+            </div>
+          </div>
+        </div>
+        <div class="look">
+          <div class="look-cover"><span class="badge">运动辣感</span><img src="assets/c6-kr-spicy.jpg" alt="运动辣感"/></div>
+          <div class="look-body">
+            <div class="look-name">运动辣感</div>
+            <div class="look-desc">
+              <span class="top">上身时髦</span>：紧身运动吊带背心<br/>
+              <span class="bot">下身运动</span>：低腰热裤 ➕ 重工长靴
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 复古 -->
+    <div class="panel" data-group="6" data-key="vt">
+      <div class="panel-hero">
+        <div class="emoji">📻</div>
+        <div>
+          <h4>复古阿普瑞 · 千禧感 × 街头感</h4>
+          <p>果汁色、老运动 T、bandana、长筒白袜——把 Y2K 现场原地复活。</p>
+        </div>
+      </div>
+      <div class="look-grid cols-2">
+        <div class="look">
+          <div class="look-cover"><span class="badge">千禧运动感</span><img src="assets/c6-vt-y2k.jpg" alt="千禧运动感"/></div>
+          <div class="look-body">
+            <div class="look-name">千禧运动感</div>
+            <div class="look-desc">
+              <span class="top">上身时髦</span>：美式复古印花 T 恤<br/>
+              <span class="bot">下身运动</span>：丝绒质感果汁色复古运动卫裤 ➕ 包裤脚长筒袜 ➕ 运动鞋/休闲鞋
+              <span class="tip">🎨 配色要点：火龙果红 / 柠檬黄 / 青苹果绿等果汁色高明度撞色</span>
+            </div>
+          </div>
+        </div>
+        <div class="look">
+          <div class="look-cover"><span class="badge">街头运动感</span><img src="assets/c6-vt-street.jpg" alt="街头运动感"/></div>
+          <div class="look-body">
+            <div class="look-name">街头运动感</div>
+            <div class="look-desc">
+              <span class="top">上身运动</span>：高饱和复古运动 T 恤 ➕ 棒球帽 / 高饱和色运动头巾<br/>
+              <span class="bot">下身时髦</span>：牛仔 / 工装短裤 ➕ 长筒白袜 ➕ 德训 / 复古运动鞋
+              <span class="tip">🎨 配色要点：90 年代美式街头原色（宝蓝 / 亮黄 / 正红）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 卡片7 标准阿普瑞穿搭单品（Tab 切换） ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">5</div>
+      <h2 class="section-title">标准阿普瑞穿搭 · 单品清单</h2>
+    </div>
+
+    <div class="pick" id="pick-7" data-active="ts">
+      <h3 class="pick-title"><span class="emoji">🛒</span>选单品 · 上下装各 6 件必收</h3>
+      <p class="pick-sub"><span class="switch-pill">点击切换</span>上装运动 / 上装时髦 / 下装运动 / 下装时髦</p>
+      <div class="tabs" data-group="7">
+        <button class="tab active" data-key="ts" data-group="7">
+          <span class="tab-emoji">🏃‍♀️</span><span>上装运动</span><span class="tab-hash">TOP · SPORT</span>
+        </button>
+        <button class="tab" data-key="tc" data-group="7">
+          <span class="tab-emoji">💃</span><span>上装时髦</span><span class="tab-hash">TOP · CHIC</span>
+        </button>
+        <button class="tab" data-key="bs" data-group="7">
+          <span class="tab-emoji">🏋️</span><span>下装运动</span><span class="tab-hash">BOTTOM · SPORT</span>
+        </button>
+        <button class="tab" data-key="bc" data-group="7">
+          <span class="tab-emoji">👖</span><span>下装时髦</span><span class="tab-hash">BOTTOM · CHIC</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- TS -->
+    <div class="panel active" data-group="7" data-key="ts">
+      <div class="item-grid">
+        <div class="item-card"><div class="item-cover"><img src="assets/c7-top-sport-jacket.jpg" alt="运动夹克"/></div><div class="item-body"><div class="item-name">运动夹克 / 防晒皮肤衣</div></div></div>
+        <div class="item-card"><span class="must">✅ 必备</span><div class="item-cover"><img src="assets/c7-top-sport-bra.jpg" alt="运动背心"/></div><div class="item-body"><div class="item-name">运动背心 / 运动 bra</div></div></div>
+        <div class="item-card"><div class="item-cover"><img src="assets/c7-top-sport-swim.jpg" alt="泳衣"/></div><div class="item-body"><div class="item-name">泳衣</div></div></div>
+      </div>
+    </div>
+    <!-- TC -->
+    <div class="panel" data-group="7" data-key="tc">
+      <div class="item-grid">
+        <div class="item-card"><div class="item-cover"><img src="assets/c7-top-chic-shirt.jpg" alt="条纹衬衫"/></div><div class="item-body"><div class="item-name">条纹衬衫</div></div></div>
+        <div class="item-card"><div class="item-cover"><img src="assets/c7-top-chic-cami.jpg" alt="吊带 / 抹胸"/></div><div class="item-body"><div class="item-name">吊带 / 抹胸</div></div></div>
+        <div class="item-card"><div class="item-cover"><img src="assets/c7-top-chic-croptop.jpg" alt="croptop"/></div><div class="item-body"><div class="item-name">Croptop</div></div></div>
+      </div>
+    </div>
+    <!-- BS -->
+    <div class="panel" data-group="7" data-key="bs">
+      <div class="item-grid">
+        <div class="item-card"><div class="item-cover"><img src="assets/c7-bot-sport-shorts.jpg" alt="复古运动短裤"/></div><div class="item-body"><div class="item-name">复古运动短裤</div></div></div>
+        <div class="item-card"><div class="item-cover"><img src="assets/c7-bot-sport-legging.jpg" alt="Legging"/></div><div class="item-body"><div class="item-name">Legging</div></div></div>
+        <div class="item-card"><div class="item-cover"><img src="assets/c7-bot-sport-bermuda.jpg" alt="百慕大运动短裤"/></div><div class="item-body"><div class="item-name">百慕大运动短裤</div></div></div>
+      </div>
+    </div>
+    <!-- BC -->
+    <div class="panel" data-group="7" data-key="bc">
+      <div class="item-grid">
+        <div class="item-card"><div class="item-cover"><img src="assets/c7-bot-chic-lace.jpg" alt="蕾丝短裤 / 连衣裙"/></div><div class="item-body"><div class="item-name">蕾丝短裤 / 连衣裙</div></div></div>
+        <div class="item-card"><div class="item-cover"><img src="assets/c7-bot-chic-capri.jpg" alt="卡普里裤"/></div><div class="item-body"><div class="item-name">卡普里裤</div></div></div>
+        <div class="item-card"><div class="item-cover"><img src="assets/c7-bot-chic-jeans.jpg" alt="低腰牛仔裤"/></div><div class="item-body"><div class="item-name">低腰牛仔裤</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 卡片8 穿搭公式（Tab 切换：女/男/场景） ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">6</div>
+      <h2 class="section-title">穿搭公式 · 直接抄作业</h2>
+    </div>
+
+    <div class="pick" id="pick-8" data-active="women">
+      <h3 class="pick-title"><span class="emoji">🧮</span>选公式 · 女生 / 男生 / 场景演绎</h3>
+      <p class="pick-sub"><span class="switch-pill">点击切换</span>看你想抄哪一套阿普瑞公式</p>
+      <div class="tabs" data-group="8">
+        <button class="tab active" data-key="women" data-group="8">
+          <span class="tab-emoji">👗</span><span>女生版</span><span class="tab-hash">FOR HER</span>
+        </button>
+        <button class="tab" data-key="men" data-group="8">
+          <span class="tab-emoji">🧥</span><span>男生版</span><span class="tab-hash">FOR HIM</span>
+        </button>
+        <button class="tab" data-key="scene" data-group="8">
+          <span class="tab-emoji">🎾</span><span>场景演绎</span><span class="tab-hash">POST-WORKOUT</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 女生 -->
+    <div class="panel active" data-group="8" data-key="women">
+      <div class="look-grid cols-4">
+        <div class="look"><div class="look-cover"><span class="badge">Look 1</span><img src="assets/c8-w-1.jpg" alt=""/></div><div class="look-body"><div class="look-name">运动夹克 + 蕾丝短裤 + 高跟鞋</div></div></div>
+        <div class="look"><div class="look-cover"><span class="badge">Look 2</span><img src="assets/c8-w-2.jpg" alt=""/></div><div class="look-body"><div class="look-name">运动夹克 + 短裙 + 高跟鞋</div></div></div>
+        <div class="look"><div class="look-cover"><span class="badge">Look 3 ✅</span><img src="assets/c8-w-3.jpg" alt=""/></div><div class="look-body"><div class="look-name"><span class="check">★</span>运动 bra + 卡普里裤 + 人字小坡跟</div></div></div>
+        <div class="look"><div class="look-cover"><span class="badge">Look 4</span><img src="assets/c8-w-4.jpg" alt=""/></div><div class="look-body"><div class="look-name">运动背心 + 牛仔百慕大 + 乐福鞋</div></div></div>
+      </div>
+    </div>
+
+    <!-- 男生 -->
+    <div class="panel" data-group="8" data-key="men">
+      <div class="look-grid cols-4">
+        <div class="look"><div class="look-cover"><span class="badge">Look 1</span><img src="assets/c8-m-1.jpg" alt=""/></div><div class="look-body"><div class="look-name">古巴领衬衫 + 复古运动短裤 + 乐福鞋</div></div></div>
+        <div class="look"><div class="look-cover"><span class="badge">Look 2</span><img src="assets/c8-m-2.jpg" alt=""/></div><div class="look-body"><div class="look-name">运动夹克 + 四分西裤 + 麂皮豆豆鞋</div></div></div>
+        <div class="look"><div class="look-cover"><span class="badge">Look 3</span><img src="assets/c8-m-3.jpg" alt=""/></div><div class="look-body"><div class="look-name">运动背心 + 高腰阔腿西裤 + 腰带</div></div></div>
+        <div class="look"><div class="look-cover"><span class="badge">Look 4</span><img src="assets/c8-m-4.jpg" alt=""/></div><div class="look-body"><div class="look-name">速干运动短袖 + 水洗牛仔裤 + 切尔西靴</div></div></div>
+      </div>
+    </div>
+
+    <!-- 场景 -->
+    <div class="panel" data-group="8" data-key="scene">
+      <div class="panel-hero">
+        <div class="emoji">🏙️</div>
+        <div>
+          <h4>运动后进城办事 · 场景演绎</h4>
+          <p>把运动服穿进日常场景——一身穿搭，从球场直接切进 Citywalk。</p>
+        </div>
+      </div>
+      <div class="look-grid cols-4">
+        <div class="look"><div class="look-cover"><span class="badge">泳衣 × 阿普瑞</span><img src="assets/c9-swim.jpg" alt=""/></div><div class="look-body"><div class="look-name">泳衣 × 阿普瑞风</div></div></div>
+        <div class="look"><div class="look-cover"><span class="badge">网球服 × 阿普瑞</span><img src="assets/c9-tennis.jpg" alt=""/></div><div class="look-body"><div class="look-name">网球服 × 阿普瑞风</div></div></div>
+        <div class="look"><div class="look-cover"><span class="badge">健身服 × 阿普瑞 ✅</span><img src="assets/c9-gym.jpg" alt=""/></div><div class="look-body"><div class="look-name"><span class="check">★</span>健身服 × 阿普瑞风</div></div></div>
+        <div class="look"><div class="look-cover"><span class="badge">球衣 × 阿普瑞</span><img src="assets/c9-jersey.jpg" alt=""/></div><div class="look-body"><div class="look-name">球衣 × 阿普瑞风</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部 CTA -->
+  <div class="section" style="background: linear-gradient(135deg, var(--apres-blue-deep) 0%, var(--apres-blue) 100%); color:#fff">
+    <div class="section-head">
+      <div class="section-num" style="background:var(--apres-yellow); color:var(--apres-blue-deep)">→</div>
+      <h2 class="section-title" style="color:#fff">现在就出稿，别错过流量池</h2>
+    </div>
+    <p style="margin:0 0 14px; color:rgba(255,255,255,0.85); font-size:13.5px">
+      发布完成后请回填收集表，薯薯会定期回扫并持续投流。
+    </p>
+    <a class="cta-link" style="background:var(--apres-yellow); color:var(--apres-blue-deep)" href="https://doc.weixin.qq.com/forms/ANAAyQcbAAgAUwAIAa5ANoCNqVZYVZenf" target="_blank" rel="noopener">前往填写收集表</a>
+    <a class="cta-link" style="background:#fff; color:var(--apres-blue-deep); margin-left:8px" href="https://www.xiaohongshu.com/explore/6a55df64000000001c02673b?xsec_token=ABZX6NE4XuBJ8mhMNMbxRmQVUOb4-xFenewrb-LbqO1Pc=&xsec_source=pc_search" target="_blank" rel="noopener">查看官宣笔记</a>
+  </div>
+
+  <div class="footer">阿普瑞风 · 活动征稿 brief V1.0 · 2026.07 · 小红书 时尚</div>
+</div>
+
+<script>
+  // 通用 tab 交互（支持多个 group：6/7/8）
+  document.querySelectorAll('.tabs').forEach(function(group){
+    var g = group.dataset.group;
+    group.querySelectorAll('.tab').forEach(function(tab){
+      tab.addEventListener('click', function(){
+        var key = tab.dataset.key;
+        // 切换 tab active
+        group.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+        tab.classList.add('active');
+        // 切换 panel
+        document.querySelectorAll('.panel[data-group="'+g+'"]').forEach(function(p){ p.classList.remove('active'); });
+        var target = document.querySelector('.panel[data-group="'+g+'"][data-key="'+key+'"]');
+        if(target) target.classList.add('active');
+        // 更新 pick 渐变色
+        var pick = document.getElementById('pick-'+g);
+        if(pick) pick.setAttribute('data-active', key);
+      });
+    });
+  });
+</script>
+</body>
+</html>
